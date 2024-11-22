@@ -55,7 +55,7 @@ pipeline {
 
         stage(' pushing image to docker hub'){
             when{
-                branch 'Dev'
+                branch 'dev'
             }
             steps{
                 dir('shopping-website') {
