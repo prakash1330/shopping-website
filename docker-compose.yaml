@@ -1,0 +1,12 @@
+services:
+  my_service:
+    image: ${IMAGE_NAME}
+    container_name: my_container
+    ports:
+      - "80:80"
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
