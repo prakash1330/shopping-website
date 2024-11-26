@@ -4,12 +4,26 @@ pipeline {
         stage('Git Clone') {
             steps {
                 // Cloning from GitHub
-                sh '''
-                    if [ -d "shopping-website" ]; then
-                        rm -r shopping-website
-                    fi
-                '''
-                sh 'git clone https://github.com/prakash1330/shopping-website.git'
+                // sh '''
+                //     if [ -d "shopping-website" ]; then
+                //         rm -r shopping-website
+                //     fi
+                // '''
+                // sh 'git clone https://github.com/prakash1330/shopping-website.git'
+                checkout scm
+            }
+        }
+
+        stage('Set Branch Name') {
+            steps {
+                script {
+                    // env.BRANCH_NAME = sh(script: "git -C shopping-website rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
+                    // sh "env.BRANCH_NAME=${GIT_BRANCH}"
+                    // echo "Branch Name: ${env.BRANCH_NAME}"
+                    env.BRANCH_NAME = env.GIT_BRANCH
+                    echo "Branch Name: ${env.BRANCH_NAME}"
+                }
+                
             }
         }
 
@@ -46,8 +60,8 @@ pipeline {
 
         stage('Push Image to Docker Hub if dev branch') {
             when {
-                // expression { env.BRANCH_NAME == 'dev' }
-                branch 'dev'
+                // lets see
+              expression { env.BRANCH_NAME == 'origin/dev' }
             }
             steps {
                 dir('shopping-website') {
@@ -59,8 +73,7 @@ pipeline {
 
         stage('Push Image to Docker Hub if main branch') {
             when {
-                // expression { env.BRANCH_NAME == 'main' }
-                branch 'main'
+                expression { env.BRANCH_NAME == 'origin/main' }
             }
             steps {
                 dir('shopping-website') {
