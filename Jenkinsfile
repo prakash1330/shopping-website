@@ -19,8 +19,8 @@ pipeline {
                 // script {
                 //     // env.BRANCH_NAME = sh(script: "git -C shopping-website rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
                 //     echo "Branch Name: ${env.BRANCH_NAME}"
+                // }
                 sh "echo ${BRANCH_NAME}"
-                }
             }
         }
 
