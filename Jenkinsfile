@@ -4,12 +4,13 @@ pipeline {
         stage('Git Clone') {
             steps {
                 // Cloning from GitHub
-                sh '''
-                    if [ -d "shopping-website" ]; then
-                        rm -r shopping-website
-                    fi
-                '''
-                sh 'git clone https://github.com/prakash1330/shopping-website.git'
+                // sh '''
+                //     if [ -d "shopping-website" ]; then
+                //         rm -r shopping-website
+                //     fi
+                // '''
+                // sh 'git clone https://github.com/prakash1330/shopping-website.git'
+                checkout scm
             }
         }
 
@@ -57,7 +58,7 @@ pipeline {
             when {
                 // lets see
                 // n
-                branch 'refs/heads/dev'
+                branch 'dev'
             }
             steps {
                 dir('shopping-website') {
@@ -69,7 +70,7 @@ pipeline {
 
         stage('Push Image to Docker Hub if main branch') {
             when {
-                branch 'refs/heads/main'
+                branch 'main'
             }
             steps {
                 dir('shopping-website') {
