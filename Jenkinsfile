@@ -20,7 +20,7 @@ pipeline {
                 //     // env.BRANCH_NAME = sh(script: "git -C shopping-website rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
                 //     echo "Branch Name: ${env.BRANCH_NAME}"
                 // }
-                sh "echo ${GIT_BRANCH}"
+                sh "env.BRANCH_NAME=${GIT_BRANCH}"
             }
         }
 
@@ -58,7 +58,7 @@ pipeline {
         stage('Push Image to Docker Hub if dev branch') {
             when {
                 // lets see
-                GIT_BRANCH 'dev'
+                env.BRANCH_NAME 'origin/dev'
             }
             steps {
                 dir('shopping-website') {
@@ -70,7 +70,7 @@ pipeline {
 
         stage('Push Image to Docker Hub if main branch') {
             when {
-                GIT_BRANCH 'main'
+                env.BRANCH_NAME 'origin/main'
             }
             steps {
                 dir('shopping-website') {
