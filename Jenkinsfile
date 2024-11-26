@@ -57,7 +57,6 @@ pipeline {
         stage('Push Image to Docker Hub if dev branch') {
             when {
                 // lets see
-                // n
                 branch 'dev'
             }
             steps {
