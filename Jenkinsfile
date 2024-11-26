@@ -58,7 +58,7 @@ pipeline {
         stage('Push Image to Docker Hub if dev branch') {
             when {
                 // lets see
-                branch 'dev'
+                GIT_BRANCH 'dev'
             }
             steps {
                 dir('shopping-website') {
@@ -70,7 +70,7 @@ pipeline {
 
         stage('Push Image to Docker Hub if main branch') {
             when {
-                branch 'main'
+                GIT_BRANCH 'main'
             }
             steps {
                 dir('shopping-website') {
