@@ -16,11 +16,12 @@ pipeline {
 
         stage('Set Branch Name') {
             steps {
-                // script {
-                //     // env.BRANCH_NAME = sh(script: "git -C shopping-website rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
-                //     echo "Branch Name: ${env.BRANCH_NAME}"
-                // }
-                sh "env.BRANCH_NAME=${GIT_BRANCH}"
+                script {
+                    // env.BRANCH_NAME = sh(script: "git -C shopping-website rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
+                    sh "env.BRANCH_NAME=${GIT_BRANCH}"
+                    echo "Branch Name: ${env.BRANCH_NAME}"
+                }
+                
             }
         }
 
