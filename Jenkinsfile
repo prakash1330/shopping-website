@@ -58,7 +58,7 @@ pipeline {
         stage('Push Image to Docker Hub if dev branch') {
             when {
                 // lets see
-                env.BRANCH_NAME 'origin/dev'
+              expression { env.BRANCH_NAME == 'origin/dev' }
             }
             steps {
                 dir('shopping-website') {
@@ -70,7 +70,7 @@ pipeline {
 
         stage('Push Image to Docker Hub if main branch') {
             when {
-                env.BRANCH_NAME 'origin/main'
+                expression { env.BRANCH_NAME == 'origin/main' }
             }
             steps {
                 dir('shopping-website') {
