@@ -41,9 +41,9 @@ pipeline {
             steps {
                 // Building Docker image
                 dir('shopping-website') {
-                    sh "docker build -t ${IMAGE_NAME}:${TAG} ."
+                    // sh "docker build -t ${IMAGE_NAME}:${TAG} ."
                     // sh 'ls -al'
-                    // sh './build.sh'
+                    sh './build.sh'
                 }
             }
         }
