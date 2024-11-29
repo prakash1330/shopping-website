@@ -4,8 +4,10 @@
 export IMAGE_NAME=$(cat info.txt)
 export TAG=$(cat tag.txt)
 
+echo ${IMAGE_NAME}:${TAG}
+
 # Taking the container tage name from info.txt file
-docker build -t ${IMAGE_NAME}:${TAG} .
+docker build -t $(cat info.txt):$(cat tag.txt) .
 
 
 
