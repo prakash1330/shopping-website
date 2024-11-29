@@ -44,6 +44,7 @@ pipeline {
                     // sh "docker build -t ${IMAGE_NAME}:${TAG} ."
                     // sh 'ls -al'
                     sh 'ls -l build.sh'
+                    sh 'chmod +x build.sh'
                     sh './build.sh'
                 }
             }
@@ -57,6 +58,7 @@ pipeline {
                     //     sh 'docker-compose down'
                     //     sh 'docker-compose up -d'
                         sh 'ls -l deploy.sh'
+                        sh 'chmod +x deploy.sh'
                         sh './deploy.sh'
                     }
                 // }
