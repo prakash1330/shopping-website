@@ -27,15 +27,15 @@ pipeline {
             }
         }
 
-        stage('Set Image Name and Tag') {
-            steps {
-                script {
-                    // Reading the image name and tag from files
-                    IMAGE_NAME = readFile('shopping-website/info.txt').trim()
-                    TAG = readFile('shopping-website/tag.txt').trim()
-                }
-            }
-        }
+        // stage('Set Image Name and Tag') {
+        //     steps {
+        //         script {
+        //             // Reading the image name and tag from files
+        //             IMAGE_NAME = readFile('shopping-website/info.txt').trim()
+        //             TAG = readFile('shopping-website/tag.txt').trim()
+        //         }
+        //     }
+        // }
 
         stage('Build') {
             steps {
@@ -43,7 +43,7 @@ pipeline {
                 // dir('shopping-website') {
                     // sh "docker build -t ${IMAGE_NAME}:${TAG} ."
                     // sh 'ls -al'
-                    sh 'ls -l build.sh'
+                    // sh 'ls -l build.sh'
                     sh 'chmod +x build.sh'
                     sh './build.sh'
                 // }
@@ -57,7 +57,7 @@ pipeline {
                     // withEnv(["IMAGE_NAME=${IMAGE_NAME}", "TAG=${TAG}"]) {
                     //     sh 'docker-compose down'
                     //     sh 'docker-compose up -d'
-                        sh 'ls -l deploy.sh'
+                        // sh 'ls -l deploy.sh'
                     
                         sh 'chmod +x deploy.sh'
                         sh './deploy.sh'
