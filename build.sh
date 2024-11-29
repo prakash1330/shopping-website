@@ -7,7 +7,7 @@ export TAG=$(cat tag.txt)
 docker compose down
 
 # Taking the container tage name from info.txt file
-docker build -t $(IMAGE_NAME):$(TAG) .
+docker build -t ${IMAGE_NAME}:${TAG} .
 
 # spin up a new container
 # Main
