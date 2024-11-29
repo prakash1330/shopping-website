@@ -8,4 +8,3 @@ docker-compose down
 
 # spinning up new container
 docker-compose up -d
-

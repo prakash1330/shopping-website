@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Git Clone') {
+        stage('Git') {
             steps {
                 checkout scm
             }
@@ -9,14 +9,12 @@ pipeline {
 
         stage('Set Branch Name') {
             steps {
+
                 script {
-                    // env.BRANCH_NAME = sh(script: "git -C shopping-website rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
-                    // sh "env.BRANCH_NAME=${GIT_BRANCH}"
-                    // echo "Branch Name: ${env.BRANCH_NAME}"
+                    // setting up branch name env variable
                     env.BRANCH_NAME = env.GIT_BRANCH
                     echo "Branch Name: ${env.BRANCH_NAME}"
                 }
-                
             }
         }
 
@@ -32,36 +30,24 @@ pipeline {
 
         stage('Build') {
             steps {
-                // Building Docker image
-                // dir('shopping-website') {
-                    // sh "docker build -t ${IMAGE_NAME}:${TAG} ."
-                    // sh 'ls -al'
-                    // sh 'ls -l build.sh'
-                    sh 'chmod +x build.sh'
-                    sh './build.sh'
-                // }
+                // Building Docker image using build.sh script
+                 sh 'chmod +x build.sh'
+                 sh './build.sh'
+
             }
         }
 
         stage('Deploy') {
             steps {
-                // Stop the running container and spin up a new one
-                // dir('shopping-website') {
-                    // withEnv(["IMAGE_NAME=${IMAGE_NAME}", "TAG=${TAG}"]) {
-                    //     sh 'docker-compose down'
-                    //     sh 'docker-compose up -d'
-                        // sh 'ls -l deploy.sh'
-                    
-                        sh 'chmod +x deploy.sh'
-                        sh './deploy.sh'
-                    // }
-                // }
+                // Stoping existing container and deploying new one
+                 sh 'chmod +x deploy.sh'
+                 sh './deploy.sh'
+
             }
         }
 
         stage('Push Image to Docker Hub if dev branch') {
             when {
-                // lets see
               expression { env.BRANCH_NAME == 'origin/dev' }
             }
             steps {
