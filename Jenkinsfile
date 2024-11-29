@@ -47,17 +47,18 @@ pipeline {
             }
         }
 
-        // stage('Deploy') {
-        //     steps {
-        //         // Stop the running container and spin up a new one
-        //         dir('shopping-website') {
-        //             withEnv(["IMAGE_NAME=${IMAGE_NAME}", "TAG=${TAG}"]) {
-        //                 sh 'docker-compose down'
-        //                 sh 'docker-compose up -d'
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Deploy') {
+            steps {
+                // Stop the running container and spin up a new one
+                dir('shopping-website') {
+                    // withEnv(["IMAGE_NAME=${IMAGE_NAME}", "TAG=${TAG}"]) {
+                        // sh 'docker-compose down'
+                        // sh 'docker-compose up -d'
+                        sh './deploy.sh'
+                    // }
+                }
+            }
+        }
 
         stage('Push Image to Docker Hub if dev branch') {
             when {
