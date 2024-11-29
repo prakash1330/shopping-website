@@ -1,14 +1,12 @@
-# #!/bin/bash
+#!/bin/bash
 
-# # Stop the existing container
-# docker compose down
+# Adding env variable
+export IMAGE_NAME=$(cat info.txt)
+export TAG=$(cat tag.txt)
 
-# # Taking the container tage name from info.txt file
-# docker build -t $(cat info.txt) .
 
-# # spin up a new container
-# # Main
-# docker compose up -d
+# Taking the container tage name from info.txt file
+docker build -t ${IMAGE_NAME}:${TAG} .
 
 
 
