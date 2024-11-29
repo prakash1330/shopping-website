@@ -1,4 +1,7 @@
 #!/bin/bash
+# Adding env variable
+export IMAGE_NAME=$(cat info.txt)
+export TAG_NAME=$(cat tag.txt)
 
 # Stop the existing container
 docker compose down
