@@ -73,9 +73,7 @@ pipeline {
             }
             steps {
                 dir('shopping-website') {
-                    sh 'export IMAGE_NAME=$(cat info.txt)'
-                    sh 'export TAG=$(cat tag.txt)'
-                    sh "docker tag ${IMAGE_NAME}:${TAG} prakash112/dev:${TAG}"
+                    sh "docker tag ${env.IMAGE_NAME}:${TAG} prakash112/dev:${env.TAG}"
                     sh "docker push prakash112/dev:${TAG}"
                 }
             }
@@ -87,7 +85,7 @@ pipeline {
             }
             steps {
                 dir('shopping-website') {
-                    sh "docker tag ${IMAGE_NAME}:${TAG} prakash112/prod:${TAG}"
+                    sh "docker tag ${env.IMAGE_NAME}:${TAG} prakash112/prod:${env.TAG}"
                     sh "docker push prakash112/prod:${TAG}"
                 }
             }
