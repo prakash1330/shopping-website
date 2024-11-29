@@ -58,6 +58,7 @@ pipeline {
                     //     sh 'docker-compose down'
                     //     sh 'docker-compose up -d'
                         sh 'ls -l deploy.sh'
+                    
                         sh 'chmod +x deploy.sh'
                         sh './deploy.sh'
                     }
