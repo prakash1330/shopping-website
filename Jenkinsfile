@@ -3,13 +3,6 @@ pipeline {
     stages {
         stage('Git Clone') {
             steps {
-                // Cloning from GitHub
-                // sh '''
-                //     if [ -d "shopping-website" ]; then
-                //         rm -r shopping-website
-                //     fi
-                // '''
-                // sh 'git clone https://github.com/prakash1330/shopping-website.git'
                 checkout scm
             }
         }
