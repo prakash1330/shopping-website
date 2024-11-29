@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    environment {
+        // Set default values for IMAGE_NAME and TAG
+        IMAGE_NAME = ''
+        TAG = ''
+    }
     stages {
         stage('Git Clone') {
             steps {
@@ -73,8 +78,11 @@ pipeline {
             }
             steps {
                 dir('shopping-website') {
+                    dotenv {
                     sh "docker tag ${env.IMAGE_NAME}:${env.TAG} prakash112/dev:${env.TAG}"
                     sh "docker push prakash112/dev:${env.TAG}"
+
+                    }
                 }
             }
         }
@@ -85,8 +93,10 @@ pipeline {
             }
             steps {
                 dir('shopping-website') {
+                    dotenv{
                     sh "docker tag ${env.IMAGE_NAME}:${env.TAG} prakash112/prod:${env.TAG}"
                     sh "docker push prakash112/prod:${env.TAG}"
+                    }
                 }
             }
         }
