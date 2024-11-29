@@ -27,23 +27,23 @@ pipeline {
             }
         }
 
-        // stage('Set Image Name and Tag') {
-        //     steps {
-        //         script {
-        //             // Reading the image name and tag from files
-        //             IMAGE_NAME = readFile('shopping-website/info.txt').trim()
-        //             TAG = readFile('shopping-website/tag.txt').trim()
-        //         }
-        //     }
-        // }
+        stage('Set Image Name and Tag') {
+            steps {
+                script {
+                    // Reading the image name and tag from files
+                    IMAGE_NAME = readFile('shopping-website/info.txt').trim()
+                    TAG = readFile('shopping-website/tag.txt').trim()
+                }
+            }
+        }
 
         stage('Build') {
             steps {
                 // Building Docker image
                 dir('shopping-website') {
-                    // sh "docker build -t ${IMAGE_NAME}:${TAG} ."
-                    sh 'ls -al'
-                    sh './build.sh'
+                    sh "docker build -t ${IMAGE_NAME}:${TAG} ."
+                    // sh 'ls -al'
+                    // sh './build.sh'
                 }
             }
         }
