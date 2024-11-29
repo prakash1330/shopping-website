@@ -43,6 +43,7 @@ pipeline {
                 dir('shopping-website') {
                     // sh "docker build -t ${IMAGE_NAME}:${TAG} ."
                     // sh 'ls -al'
+                    sh 'ls -l build.sh'
                     sh './build.sh'
                 }
             }
@@ -52,13 +53,13 @@ pipeline {
             steps {
                 // Stop the running container and spin up a new one
                 dir('shopping-website') {
-                    withEnv(["IMAGE_NAME=${IMAGE_NAME}", "TAG=${TAG}"]) {
-                        sh 'docker-compose down'
-                        sh 'docker-compose up -d'
-                        // sh 'ls'
-                        // sh './deploy.sh'
+                    // withEnv(["IMAGE_NAME=${IMAGE_NAME}", "TAG=${TAG}"]) {
+                    //     sh 'docker-compose down'
+                    //     sh 'docker-compose up -d'
+                        ls -l deploy.sh
+                        sh './deploy.sh'
                     }
-                }
+                // }
             }
         }
 
