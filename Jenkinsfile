@@ -9,8 +9,8 @@ pipeline {
                 //         rm -r shopping-website
                 //     fi
                 // '''
-                // sh 'git clone https://github.com/prakash1330/shopping-website.git'
-                checkout scm
+                sh 'git clone https://github.com/prakash1330/shopping-website.git'
+                // checkout scm
             }
         }
 
