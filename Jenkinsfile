@@ -73,11 +73,8 @@ pipeline {
             }
             steps {
                 dir('shopping-website') {
-                    dotenv {
-                    sh "docker tag ${IMAGE_NAME}:${env.TAG} prakash112/dev:${TAG}"
+                    sh "docker tag ${IMAGE_NAME}:${TAG} prakash112/dev:${TAG}"
                     sh "docker push prakash112/dev:${TAG}"
-
-                    }
                 }
             }
         }
@@ -88,10 +85,8 @@ pipeline {
             }
             steps {
                 dir('shopping-website') {
-                    dotenv{
-                    sh "docker tag ${IMAGE_NAME}:${env.TAG} prakash112/prod:${TAG}"
+                    sh "docker tag ${IMAGE_NAME}:${TAG} prakash112/prod:${TAG}"
                     sh "docker push prakash112/prod:${TAG}"
-                    }
                 }
             }
         }
