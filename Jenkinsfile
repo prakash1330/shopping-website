@@ -31,8 +31,8 @@ pipeline {
             steps {
                 script {
                     // Reading the image name and tag from files
-                    IMAGE_NAME = readFile('shopping-website/info.txt').trim()
-                    TAG = readFile('shopping-website/tag.txt').trim()
+                    IMAGE_NAME = readFile('info.txt').trim()
+                    TAG = readFile('tag.txt').trim()
                 }
             }
         }
