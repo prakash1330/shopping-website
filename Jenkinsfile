@@ -1,10 +1,5 @@
 pipeline {
     agent any
-    environment {
-        // Set default values for IMAGE_NAME and TAG
-        IMAGE_NAME = ''
-        TAG = ''
-    }
     stages {
         stage('Git Clone') {
             steps {
@@ -32,15 +27,15 @@ pipeline {
             }
         }
 
-        // stage('Set Image Name and Tag') {
-        //     steps {
-        //         script {
-        //             // Reading the image name and tag from files
-        //             IMAGE_NAME = readFile('shopping-website/info.txt').trim()
-        //             TAG = readFile('shopping-website/tag.txt').trim()
-        //         }
-        //     }
-        // }
+        stage('Set Image Name and Tag') {
+            steps {
+                script {
+                    // Reading the image name and tag from files
+                    IMAGE_NAME = readFile('shopping-website/info.txt').trim()
+                    TAG = readFile('shopping-website/tag.txt').trim()
+                }
+            }
+        }
 
         stage('Build') {
             steps {
@@ -79,8 +74,8 @@ pipeline {
             steps {
                 dir('shopping-website') {
                     dotenv {
-                    sh "docker tag ${env.IMAGE_NAME}:${env.TAG} prakash112/dev:${env.TAG}"
-                    sh "docker push prakash112/dev:${env.TAG}"
+                    sh "docker tag ${IMAGE_NAME}:${env.TAG} prakash112/dev:${TAG}"
+                    sh "docker push prakash112/dev:${TAG}"
 
                     }
                 }
@@ -94,8 +89,8 @@ pipeline {
             steps {
                 dir('shopping-website') {
                     dotenv{
-                    sh "docker tag ${env.IMAGE_NAME}:${env.TAG} prakash112/prod:${env.TAG}"
-                    sh "docker push prakash112/prod:${env.TAG}"
+                    sh "docker tag ${IMAGE_NAME}:${env.TAG} prakash112/prod:${TAG}"
+                    sh "docker push prakash112/prod:${TAG}"
                     }
                 }
             }
