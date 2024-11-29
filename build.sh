@@ -7,7 +7,7 @@
 # echo 
 
 # Taking the container tage name from info.txt file
-docker build -t ${IMAGE_NAME}:${TAG} .
+docker build -t $(cat info.txt):$(cat tag.txt) .
 
 
 
