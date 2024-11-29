@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Stop the existing container
 docker-compose down
 
