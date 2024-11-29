@@ -40,20 +40,20 @@ pipeline {
         stage('Build') {
             steps {
                 // Building Docker image
-                dir('shopping-website') {
+                // dir('shopping-website') {
                     // sh "docker build -t ${IMAGE_NAME}:${TAG} ."
                     // sh 'ls -al'
                     sh 'ls -l build.sh'
                     sh 'chmod +x build.sh'
                     sh './build.sh'
-                }
+                // }
             }
         }
 
         stage('Deploy') {
             steps {
                 // Stop the running container and spin up a new one
-                dir('shopping-website') {
+                // dir('shopping-website') {
                     // withEnv(["IMAGE_NAME=${IMAGE_NAME}", "TAG=${TAG}"]) {
                     //     sh 'docker-compose down'
                     //     sh 'docker-compose up -d'
@@ -61,7 +61,7 @@ pipeline {
                     
                         sh 'chmod +x deploy.sh'
                         sh './deploy.sh'
-                    }
+                    // }
                 // }
             }
         }
