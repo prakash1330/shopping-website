@@ -1,6 +1,6 @@
 services:
   my_service:
-    image: ${IMAGE_NAME}
+    image: ${IMAGE_NAME}:${TAG}
     container_name: my_container
     ports:
       - "80:80"

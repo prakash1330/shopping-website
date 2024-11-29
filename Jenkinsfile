@@ -9,6 +9,7 @@ pipeline {
 
         stage('Set Branch Name') {
             steps {
+
                 script {
                     // setting up branch name env variable
                     env.BRANCH_NAME = env.GIT_BRANCH
@@ -32,6 +33,7 @@ pipeline {
                 // Building Docker image using build.sh script
                  sh 'chmod +x build.sh'
                  sh './build.sh'
+
             }
         }
 
@@ -40,6 +42,7 @@ pipeline {
                 // Stoping existing container and deploying new one
                  sh 'chmod +x deploy.sh'
                  sh './deploy.sh'
+
             }
         }
 
