@@ -1,13 +1,11 @@
 #!/bin/bash
 
 # Adding env variable
-# export IMAGE_NAME=$(cat info.txt)
-# export TAG=$(cat tag.txt)
-
-# echo 
+export IMAGE_NAME=$(cat info.txt)
+export TAG=$(cat tag.txt)
 
 # Taking the container tage name from info.txt file
-docker build -t $(cat info.txt):$(cat tag.txt) .
+docker build -t ${IMAGE_NAME}:${TAG} .
 
 
 
