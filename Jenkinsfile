@@ -56,7 +56,7 @@ pipeline {
                     // withEnv(["IMAGE_NAME=${IMAGE_NAME}", "TAG=${TAG}"]) {
                     //     sh 'docker-compose down'
                     //     sh 'docker-compose up -d'
-                        ls -l deploy.sh
+                        sh 'ls -l deploy.sh'
                         sh './deploy.sh'
                     }
                 // }
