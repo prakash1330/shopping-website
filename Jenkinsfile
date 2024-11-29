@@ -27,36 +27,37 @@ pipeline {
             }
         }
 
-        stage('Set Image Name and Tag') {
-            steps {
-                script {
-                    // Reading the image name and tag from files
-                    IMAGE_NAME = readFile('shopping-website/info.txt').trim()
-                    TAG = readFile('shopping-website/tag.txt').trim()
-                }
-            }
-        }
+        // stage('Set Image Name and Tag') {
+        //     steps {
+        //         script {
+        //             // Reading the image name and tag from files
+        //             IMAGE_NAME = readFile('shopping-website/info.txt').trim()
+        //             TAG = readFile('shopping-website/tag.txt').trim()
+        //         }
+        //     }
+        // }
 
         stage('Build') {
             steps {
                 // Building Docker image
                 dir('shopping-website') {
-                    sh "docker build -t ${IMAGE_NAME}:${TAG} ."
+                    // sh "docker build -t ${IMAGE_NAME}:${TAG} ."
+                    sh './build.sh'
                 }
             }
         }
 
-        stage('Deploy') {
-            steps {
-                // Stop the running container and spin up a new one
-                dir('shopping-website') {
-                    withEnv(["IMAGE_NAME=${IMAGE_NAME}", "TAG=${TAG}"]) {
-                        sh 'docker-compose down'
-                        sh 'docker-compose up -d'
-                    }
-                }
-            }
-        }
+        // stage('Deploy') {
+        //     steps {
+        //         // Stop the running container and spin up a new one
+        //         dir('shopping-website') {
+        //             withEnv(["IMAGE_NAME=${IMAGE_NAME}", "TAG=${TAG}"]) {
+        //                 sh 'docker-compose down'
+        //                 sh 'docker-compose up -d'
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Push Image to Docker Hub if dev branch') {
             when {
